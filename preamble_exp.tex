@@ -1,0 +1,61 @@
+\documentclass[11pt, oneside]{jsarticle}
+\usepackage[truedimen,top=20truemm,bottom=20truemm,left=25truemm,right=25truemm]{geometry}
+\geometry{a4paper}
+\usepackage[dvipdfmx]{graphicx, color}
+\usepackage{bmpsize}
+\usepackage{amssymb, amsmath}
+\usepackage{multirow, multicol}
+\usepackage{slashbox}
+\usepackage{here}
+\usepackage{listings, jlisting}
+
+%ページ書式(分数形式)
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\fancypagestyle{mypagestyle}{
+    \lhead{}%ヘッダ左を空に
+    \rhead{}%ヘッダ右を空に
+    \cfoot{\thepage/\pageref{LastPage}}%フッタ中央に"今のページ数/総ページ数"を設定
+    \renewcommand{\headrulewidth}{0.0pt}%ヘッダの線を消す
+}
+\pagestyle{mypagestyle}
+\pagenumbering{arabic}
+
+%数式番号を節毎に分けてリセットする
+\def\theequation{\thesection.\arabic{equation}}
+\makeatletter
+    \@addtoreset{equation}{section}
+    %図番号を節毎に分けてリセットする
+    \renewcommand{\thefigure}{\thesection.\arabic{figure}}
+    \@addtoreset{figure}{section}
+    %表番号を節毎に分けてリセットする
+    \renewcommand{\thetable}{\thesection.\arabic{table}}
+    \@addtoreset{table}{section}
+\makeatother
+
+%プログラム挿入の書式
+\lstset{
+ 	language = ,
+ 	backgroundcolor = , %背景色と透過度 {/color[gray]{.90}}
+ 	breaklines = true,
+ 	breakindent = 10pt,
+ 	basicstyle = \ttfamily\scriptsize, %標準の書体
+ 	commentstyle = {\itshape \color[cmyk]{1,0.4,1,0}}, %コメントの書体
+ 	classoffset = 0, %関数名等の色の設定
+ 	keywordstyle = {\bfseries \color[cmyk]{0,1,0,0}}, %キーワード(int, ifなど)の書体
+ 	stringstyle = {\ttfamily \color[rgb]{0,0,1}}, %表示する文字の書体
+ 	%枠 "t"は上に線を記載, "T"は上に二重線を記載
+	%他オプション：leftline，topline，bottomline，lines，single，shadowbox
+ 	frame = tbrl,
+ 	framesep = 5pt, %frameまでの間隔(行番号とプログラムの間)
+ 	numbers = left, %行番号の位置
+ 	stepnumber = 1, %行番号の間隔
+ 	numberstyle = \tiny, %行番号の書体
+ 	tabsize = 4, %タブの大きさ
+ 	captionpos = t
+}
+%参考文献を消す
+\renewcommand{\refname}{}
+
+%表中の文字の左右の余白設定
+\setlength{\tabcolsep}{5mm}
